@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Spark Lithium – Avoid the Spark | Charlotte, NC</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --purple:      #4a1a8c;
+      --purple-dark: #3a1470;
+      --purple-light:#6b35b8;
+      --lime:        #c8e600;
+      --lime-dark:   #a8c200;
+      --white:       #ffffff;
+      --off-white:   #f7f5ff;
+      --soft-gray:   #f0edf8;
+      --text:        #1a0a38;
+      --muted:       #7a6a99;
+      --card-border: rgba(74,26,140,0.12);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--white);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 3rem;
+      background: rgba(255,255,255,0.93);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      text-decoration: none;
+    }
+    .nav-logo-box {
+      background: var(--purple);
+      color: var(--lime);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.05em;
+      padding: 0.22rem 0.5rem;
+      line-height: 1;
+      border: 2px solid var(--lime);
+    }
+    .nav-logo-text {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.5rem;
+      letter-spacing: 0.12em;
+      color: var(--purple);
+    }
+
+    nav ul { list-style: none; display: flex; gap: 2.5rem; }
+    nav ul a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.82rem;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    nav ul a:hover { color: var(--purple); }
+
+    .nav-cta {
+      background: var(--purple) !important;
+      color: var(--white) !important;
+      padding: 0.5rem 1.3rem;
+      border-radius: 4px;
+    }
+    .nav-cta:hover { background: var(--purple-dark) !important; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 9rem 3rem 5rem;
+      position: relative;
+      overflow: hidden;
+      background: var(--off-white);
+    }
+
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 55% 60% at 85% 50%, rgba(74,26,140,0.07) 0%, transparent 65%),
+        radial-gradient(ellipse 35% 40% at 10% 80%, rgba(200,230,0,0.14) 0%, transparent 60%);
+    }
+
+    .hero-element {
+      position: absolute;
+      top: 50%; right: 5rem;
+      transform: translateY(-50%);
+      background: var(--purple);
+      border: 3px solid var(--lime);
+      padding: 1.5rem 1.8rem 1.8rem;
+      text-align: center;
+      width: 170px;
+      opacity: 0.09;
+      pointer-events: none;
+    }
+    .hero-element .el-num { font-size: 1rem; color: var(--lime); text-align: right; }
+    .hero-element .el-sym { font-family: 'Bebas Neue', sans-serif; font-size: 5.5rem; color: var(--lime); line-height: 1; }
+    .hero-element .el-name { font-size: 0.9rem; letter-spacing: 0.2em; color: var(--lime); text-transform: uppercase; }
+    .hero-element .el-mass { font-size: 0.75rem; color: var(--lime); }
+
+    .hero-location {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--purple-light);
+      background: rgba(74,26,140,0.07);
+      padding: 0.4rem 1rem;
+      border-radius: 2rem;
+      margin-bottom: 1.5rem;
+      width: fit-content;
+    }
+
+    .hero-tag {
+      position: relative;
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--purple-light);
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .hero-tag::before {
+      content: '';
+      display: block;
+      width: 2.5rem;
+      height: 2px;
+      background: var(--lime);
+      border-radius: 1px;
+    }
+
+    h1 {
+      position: relative;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(4.5rem, 11vw, 11rem);
+      line-height: 0.9;
+      letter-spacing: 0.01em;
+      color: var(--purple);
+      margin-bottom: 2rem;
+    }
+    h1 .hl {
+      background: var(--lime);
+      color: var(--purple-dark);
+      padding: 0 0.12em;
+    }
+    h1 .outline {
+      -webkit-text-stroke: 2px var(--purple);
+      color: transparent;
+    }
+
+    .hero-sub {
+      position: relative;
+      max-width: 38rem;
+      font-size: 1.05rem;
+      line-height: 1.78;
+      color: var(--muted);
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-actions {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      background: var(--purple);
+      color: var(--white);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 1rem 2.2rem;
+      border-radius: 4px;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-primary:hover { background: var(--purple-dark); transform: translateY(-2px); }
+
+    .btn-lime {
+      display: inline-block;
+      background: var(--lime);
+      color: var(--purple-dark);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 1rem 2.2rem;
+      border-radius: 4px;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-lime:hover { background: var(--lime-dark); transform: translateY(-2px); }
+
+    /* ── STATS ── */
+    .stats {
+      background: var(--purple);
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .stat {
+      padding: 3rem;
+      border-right: 1px solid rgba(255,255,255,0.1);
+    }
+    .stat:last-child { border-right: none; }
+
+    .stat-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 4rem;
+      line-height: 1;
+      color: var(--lime);
+      margin-bottom: 0.5rem;
+    }
+    .stat-num span { font-size: 2.5rem; }
+    .stat-label {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.65;
+    }
+
+    /* ── CHARLOTTE ── */
+    .charlotte {
+      background: var(--soft-gray);
+      padding: 6rem 3rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .charlotte::before {
+      content: '704';
+      position: absolute;
+      left: 50%; top: 50%;
+      transform: translate(-50%,-50%);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 22rem;
+      color: rgba(74,26,140,0.04);
+      pointer-events: none;
+      white-space: nowrap;
+    }
+    .charlotte-inner { position: relative; max-width: 680px; margin: 0 auto; }
+    .section-eyebrow {
+      font-size: 0.7rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--purple-light);
+      margin-bottom: 1rem;
+    }
+    .charlotte h2 { color: var(--purple); margin-bottom: 1.2rem; }
+    .charlotte-body { color: var(--muted); line-height: 1.85; font-size: 1rem; }
+    .charlotte-tags {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 2rem;
+    }
+    .charlotte-tag {
+      background: var(--white);
+      border: 1.5px solid var(--card-border);
+      color: var(--purple);
+      font-size: 0.78rem;
+      letter-spacing: 0.04em;
+      padding: 0.4rem 1rem;
+      border-radius: 2rem;
+    }
+
+    /* ── MISSION ── */
+    .mission {
+      padding: 8rem 3rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: center;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.8rem, 4.5vw, 4.5rem);
+      line-height: 1;
+      letter-spacing: 0.02em;
+      color: var(--purple);
+      margin-bottom: 1.8rem;
+    }
+
+    .mission-body { color: var(--muted); line-height: 1.85; font-size: 1rem; }
+    .mission-body p + p { margin-top: 1rem; }
+
+    .element-badge {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      background: var(--purple);
+      border: 2px solid var(--lime);
+      padding: 0.8rem 1.2rem 1rem;
+      width: 88px;
+      margin-bottom: 1.5rem;
+    }
+    .el-n { font-size: 0.6rem; color: var(--lime); align-self: flex-end; }
+    .el-s { font-family: 'Bebas Neue', sans-serif; font-size: 2.8rem; color: var(--lime); line-height: 1; }
+    .el-nm { font-size: 0.52rem; letter-spacing: 0.15em; color: rgba(200,230,0,0.7); text-transform: uppercase; }
+    .el-ms { font-size: 0.48rem; color: rgba(200,230,0,0.5); margin-top: 0.1rem; }
+
+    .slogan-block {
+      border-left: 4px solid var(--lime);
+      padding: 2.5rem;
+      background: var(--soft-gray);
+      border-radius: 0 8px 8px 0;
+    }
+    .slogan-text {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 3.5rem;
+      line-height: 1;
+      letter-spacing: 0.05em;
+      color: var(--purple);
+      margin-bottom: 1rem;
+    }
+    .slogan-text .hl2 { background: var(--lime); padding: 0 0.1em; }
+    .slogan-desc { font-size: 0.88rem; color: var(--muted); line-height: 1.75; }
+
+    /* ── HOW ── */
+    .how { padding: 6rem 3rem; background: var(--soft-gray); }
+    .how-inner { max-width: 1400px; margin: 0 auto; }
+    .how-header { margin-bottom: 3.5rem; }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+    }
+    .step {
+      background: var(--white);
+      border: 1.5px solid var(--card-border);
+      padding: 2.5rem 2rem;
+      border-radius: 8px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.3s, box-shadow 0.3s, transform 0.2s;
+    }
+    .step:hover {
+      border-color: var(--purple-light);
+      box-shadow: 0 8px 32px rgba(74,26,140,0.1);
+      transform: translateY(-4px);
+    }
+    .step::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--lime);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+    .step:hover::before { transform: scaleX(1); }
+    .step-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 3.5rem;
+      color: rgba(74,26,140,0.1);
+      line-height: 1;
+      margin-bottom: 1.2rem;
+      transition: color 0.3s;
+    }
+    .step:hover .step-num { color: rgba(74,26,140,0.22); }
+    .step-title { font-weight: 600; font-size: 0.95rem; margin-bottom: 0.7rem; color: var(--purple); }
+    .step-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.75; }
+
+    /* ── WHY ── */
+    .why { padding: 8rem 3rem; max-width: 1400px; margin: 0 auto; }
+    .why-grid { margin-top: 4rem; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .why-card {
+      background: var(--off-white);
+      border: 1.5px solid var(--card-border);
+      padding: 2.5rem;
+      border-radius: 8px;
+      border-top: 3px solid transparent;
+      transition: border-top-color 0.3s, box-shadow 0.3s, transform 0.2s;
+    }
+    .why-card:hover {
+      border-top-color: var(--lime);
+      box-shadow: 0 8px 32px rgba(74,26,140,0.08);
+      transform: translateY(-3px);
+    }
+    .why-icon { font-size: 2rem; margin-bottom: 1.2rem; }
+    .why-title { font-weight: 600; color: var(--purple); margin-bottom: 0.6rem; font-size: 1rem; }
+    .why-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.8; }
+
+    /* ── CTA ── */
+    .cta-banner {
+      margin: 0 3rem 6rem;
+      background: var(--purple);
+      padding: 5rem 4rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 3rem;
+      border-radius: 12px;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-banner::before {
+      content: 'AVOID THE SPARK';
+      position: absolute;
+      right: -1rem; bottom: -1.5rem;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 7.5rem;
+      color: rgba(200,230,0,0.07);
+      white-space: nowrap;
+      pointer-events: none;
+    }
+    .cta-left h2 { color: var(--white); margin-bottom: 0.5rem; }
+    .cta-left p { color: rgba(255,255,255,0.65); font-size: 1rem; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--soft-gray);
+      border-top: 1px solid var(--card-border);
+      padding: 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+    .footer-left { display: flex; flex-direction: column; gap: 0.35rem; }
+    .footer-logo-row { display: flex; align-items: center; gap: 0.6rem; }
+    .footer-logo-box {
+      background: var(--purple);
+      color: var(--lime);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 0.85rem;
+      padding: 0.18rem 0.4rem;
+      border: 1.5px solid var(--lime);
+    }
+    .footer-logo-text {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.2rem;
+      letter-spacing: 0.1em;
+      color: var(--purple);
+    }
+    .footer-copy { font-size: 0.72rem; color: var(--muted); }
+    .footer-location { font-size: 0.72rem; color: var(--purple-light); letter-spacing: 0.04em; }
+    .footer-links { display: flex; gap: 2rem; }
+    .footer-links a {
+      font-size: 0.78rem;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.06em;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--purple); }
+
+    /* ── ANIMATIONS ── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .fade-up.visible { opacity: 1; transform: none; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      nav ul { display: none; }
+      .hero { padding: 7rem 1.5rem 4rem; }
+      .hero-element { display: none; }
+      .stats { grid-template-columns: 1fr; }
+      .stat { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); }
+      .charlotte { padding: 4rem 1.5rem; }
+      .mission { grid-template-columns: 1fr; gap: 3rem; padding: 5rem 1.5rem; }
+      .steps { grid-template-columns: 1fr 1fr; gap: 1rem; }
+      .why-grid { grid-template-columns: 1fr; }
+      .how { padding: 4rem 1.5rem; }
+      .why { padding: 4rem 1.5rem; }
+      .cta-banner { margin: 0 1.5rem 4rem; padding: 3rem 2rem; flex-direction: column; }
+      footer { padding: 2rem 1.5rem; flex-direction: column; align-items: flex-start; }
+    }
+    @media (max-width: 600px) {
+      .steps { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">
+      <div class="nav-logo-box">Li</div>
+      <div class="nav-logo-text">SPARK LITHIUM</div>
+    </a>
+    <ul>
+      <li><a href="#mission">Mission</a></li>
+      <li><a href="#how">How It Works</a></li>
+      <li><a href="#why">Why It Matters</a></li>
+      <li><a href="#contact" class="nav-cta">Find a Drop-Off</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-element">
+      <div class="el-num">3</div>
+      <div class="el-sym">Li</div>
+      <div class="el-name">Lithium</div>
+      <div class="el-mass">6.941</div>
+    </div>
+
+    <div class="hero-location fade-up">📍 Charlotte, NC — Proudly Local</div>
+    <div class="hero-tag fade-up">Vape &amp; Lithium Battery Safety</div>
+    <h1 class="fade-up">
+      AVOID<br>
+      THE <span class="hl">SPARK.</span><br>
+      <span class="outline">DISPOSE SAFE</span>
+    </h1>
+    <p class="hero-sub fade-up">
+      Spark Lithium is a Charlotte-founded nonprofit dedicated to keeping vapes, e-cigarettes, and lithium batteries out of the waste stream — protecting our community's waste facilities, workers, and planet from preventable fires.
+    </p>
+    <div class="hero-actions fade-up">
+      <a href="#contact" class="btn-primary">Find a Drop-Off Near You</a>
+      <a href="#mission" class="btn-lime">Our Mission</a>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="stat fade-up">
+      <div class="stat-num">65<span>%</span></div>
+      <div class="stat-label">of waste facility fires in the U.S. are caused or worsened by lithium batteries and vaping devices</div>
+    </div>
+    <div class="stat fade-up" style="transition-delay:0.1s">
+      <div class="stat-num">$1.2<span>B</span></div>
+      <div class="stat-label">in estimated annual damages to recycling and waste facilities from battery-related fires</div>
+    </div>
+    <div class="stat fade-up" style="transition-delay:0.2s">
+      <div class="stat-num">4.5<span>B</span></div>
+      <div class="stat-label">disposable vapes discarded in the U.S. each year — most ending up in regular trash</div>
+    </div>
+  </div>
+
+  <!-- CHARLOTTE PRIDE -->
+  <section class="charlotte">
+    <div class="charlotte-inner">
+      <div class="section-eyebrow fade-up">Homegrown in the Queen City</div>
+      <h2 class="fade-up">Built by Charlotteans,<br>for Charlotte — and beyond.</h2>
+      <p class="charlotte-body fade-up">
+        Spark Lithium was born right here in Charlotte, NC. Our founders grew up in the Queen City and saw firsthand how improperly discarded vapes and batteries were putting our neighbors, sanitation workers, and recycling facilities at risk. We started local — and we're growing to protect communities everywhere.
+      </p>
+      <div class="charlotte-tags fade-up">
+        <span class="charlotte-tag">📍 Charlotte, NC</span>
+        <span class="charlotte-tag">🏙️ Queen City Proud</span>
+        <span class="charlotte-tag">🌿 Community-First</span>
+        <span class="charlotte-tag">♻️ CLT Goes Green</span>
+        <span class="charlotte-tag">💜 704 Strong</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- MISSION -->
+  <section class="mission" id="mission">
+    <div>
+      <div class="section-eyebrow fade-up">Who We Are</div>
+      <h2 class="fade-up">Safe disposal.<br>Real impact.</h2>
+      <div class="mission-body fade-up">
+        <p>Spark Lithium is a nonprofit organization on a mission to eliminate the hidden hazards of improperly discarded vapes and lithium batteries. These small devices pack a punch — lithium cells can spontaneously combust when crushed, punctured, or exposed to heat inside a garbage truck or sorting facility.</p>
+        <p>We partner with municipalities, retailers, and schools to place free, clearly marked disposal boxes that make doing the right thing effortless — for everyone, right here in Charlotte and across North Carolina.</p>
+      </div>
+    </div>
+    <div class="fade-up">
+      <div class="element-badge">
+        <span class="el-n">3</span>
+        <span class="el-s">Li</span>
+        <span class="el-nm">Lithium</span>
+        <span class="el-ms">6.941</span>
+      </div>
+      <div class="slogan-block">
+        <div class="slogan-text">AVOID<br>THE <span class="hl2">SPARK.</span></div>
+        <p class="slogan-desc">Our slogan is a call to action. One small choice — dropping a vape in the right bin — can prevent a warehouse fire, protect a sanitation worker, and keep toxic chemicals from leaching into the ground we all share.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="how" id="how">
+    <div class="how-inner">
+      <div class="how-header">
+        <div class="section-eyebrow fade-up">The Process</div>
+        <h2 class="fade-up">How it works</h2>
+      </div>
+      <div class="steps">
+        <div class="step fade-up">
+          <div class="step-num">01</div>
+          <div class="step-title">Find a Drop-Off Box</div>
+          <p class="step-desc">Locate a Spark Lithium disposal box at a partner retailer, school, or community center near you across Charlotte and the Carolinas.</p>
+        </div>
+        <div class="step fade-up" style="transition-delay:0.1s">
+          <div class="step-num">02</div>
+          <div class="step-title">Drop In Your Device</div>
+          <p class="step-desc">Deposit your used vape, e-cigarette, or dead lithium battery — no registration required. Just drop and go. Simple as that.</p>
+        </div>
+        <div class="step fade-up" style="transition-delay:0.2s">
+          <div class="step-num">03</div>
+          <div class="step-title">We Handle the Rest</div>
+          <p class="step-desc">Boxes are collected and transported to certified e-waste processors who safely reclaim materials and neutralize battery hazards.</p>
+        </div>
+        <div class="step fade-up" style="transition-delay:0.3s">
+          <div class="step-num">04</div>
+          <div class="step-title">Safer Communities</div>
+          <p class="step-desc">Every device properly disposed of is one fewer potential fire. Your action protects workers, neighbors, and the environment we all call home.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY IT MATTERS -->
+  <section class="why" id="why">
+    <div class="section-eyebrow fade-up">Why It Matters</div>
+    <h2 class="fade-up">The risks are real.<br>The solution is simple.</h2>
+    <div class="why-grid">
+      <div class="why-card fade-up">
+        <div class="why-icon">🔥</div>
+        <div class="why-title">Facility Fires</div>
+        <p class="why-desc">Lithium batteries in trash compactors and sorting machines are a leading cause of devastating fires at recycling and waste facilities across North America.</p>
+      </div>
+      <div class="why-card fade-up" style="transition-delay:0.1s">
+        <div class="why-icon">👷</div>
+        <div class="why-title">Worker Safety</div>
+        <p class="why-desc">Sanitation workers are on the front lines. Exploding batteries cause injuries every year — injuries that are entirely preventable with proper disposal habits.</p>
+      </div>
+      <div class="why-card fade-up" style="transition-delay:0.2s">
+        <div class="why-icon">🌍</div>
+        <div class="why-title">Environmental Harm</div>
+        <p class="why-desc">Vapes contain nicotine, heavy metals, and plastics that leach into soil and groundwater when landfilled. Proper recycling keeps these chemicals out of our earth.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta-banner" id="contact">
+    <div class="cta-left">
+      <h2>Ready to make a difference?</h2>
+      <p>Find a drop-off location, partner with us, or bring a disposal box to your Charlotte neighborhood.</p>
+    </div>
+    <a href="#" class="btn-lime">Find a Drop-Off</a>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-left">
+      <div class="footer-logo-row">
+        <div class="footer-logo-box">Li</div>
+        <div class="footer-logo-text">SPARK LITHIUM</div>
+      </div>
+      <div class="footer-copy">© 2025 Spark Lithium. All rights reserved. A nonprofit organization.</div>
+      <div class="footer-location">📍 Charlotte, NC — Queen City Proud</div>
+    </div>
+    <div class="footer-links">
+      <a href="#">About</a>
+      <a href="#">Partners</a>
+      <a href="#">Contact</a>
+      <a href="#">Donate</a>
+    </div>
+  </footer>
+
+  <script>
+    const fadeEls = document.querySelectorAll('.fade-up');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    fadeEls.forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
